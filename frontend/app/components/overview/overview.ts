@@ -26,6 +26,9 @@ export class Overview {
   runEnvironment: RunEnvironmentOrNull = null;
   normalizedAcceleratorPerformance: NormalizedAcceleratorPerformanceOrNull =
       null;
+  computeMsAverage = '';
+  idleMsAverage = '';
+  inputMsAverage = '';
 
   constructor(
       route: ActivatedRoute, private readonly dataService: DataService,
@@ -34,6 +37,13 @@ export class Overview {
     route.params.subscribe(params => {
       this.update(params as NavigationEvent);
     });
+  }
+
+  parseAverageStepTimeDetail() {
+    const p = ((this.inputPipelineAnalysis || {}).p || {});
+    this.computeMsAverage = p.compute_ms_average || '';
+    this.idleMsAverage = p.idle_ms_average || '';
+    this.inputMsAverage = p.input_ms_average || '';
   }
 
   update(event: NavigationEvent) {
@@ -71,6 +81,7 @@ export class Overview {
       this.normalizedAcceleratorPerformance =
           data[NORMALIZED_ACCELERATOR_PERFORMANCE_INDEX] as
           NormalizedAcceleratorPerformanceOrNull;
+      this.parseAverageStepTimeDetail();
       this.updateStyle();
     });
   }

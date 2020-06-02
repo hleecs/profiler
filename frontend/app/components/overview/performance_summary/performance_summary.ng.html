@@ -17,11 +17,7 @@
       </table>
     </div>
     <div [hidden]="!isTpu">
-      <ul>
-        <li class="primary-content">Idle: {{idleMsAverage}} ms</li>
-        <li class="primary-content">Input: {{inputMsAverage}} ms</li>
-        <li class="primary-content">Compute: {{computeMsAverage}} ms</li>
-      </ul>
+      <ng-content select="[averageStepTimeDetail]"></ng-content>
       <div class="item-container">
         <table>
           <tr>
@@ -71,6 +67,7 @@
         <li class="primary-content">Utilization of TPU Matrix Units: {{mxuUtilizationPercent}}</li>
         <li class="primary-content">
           Compared to Program's Optimal FLOPS: {{flopRateUtilizationRelativeToRoofline}}
+          <ng-content select="[rootlineLink]"></ng-content>
         </li>
       </ul>
       <div class="item-container">

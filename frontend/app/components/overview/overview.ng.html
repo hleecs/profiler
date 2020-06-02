@@ -18,6 +18,11 @@
         <performance-summary
             [generalAnalysis]="generalAnalysis"
             [inputPipelineAnalysis]="inputPipelineAnalysis">
+          <ul averageStepTimeDetail>
+            <li class="primary-content">Idle: {{idleMsAverage}} ms</li>
+            <li class="primary-content">Input: {{inputMsAverage}} ms</li>
+            <li class="primary-content">Compute: {{computeMsAverage}} ms</li>
+          </ul>
         </performance-summary>
         <run-environment-view [runEnvironment]="runEnvironment"></run-environment-view>
       </div>
